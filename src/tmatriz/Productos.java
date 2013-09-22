@@ -4,6 +4,7 @@
  */
 package tmatriz;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -15,9 +16,34 @@ public class Productos {
     private int categorias;
     private int sucursales;
     private Producto[][] productos;
+
+    public Productos(int categorias, int sucursales) {
+        this.categorias = categorias;
+        this.sucursales = sucursales;
+        this.productos = new Producto[sucursales][categorias];
+                
+        this.fill();
+    }
     
     public void fill() {
-        //return Random();
+        Random rd = new Random();
+        int ids[] = new int[this.sucursales * this.categorias];
+        
+        for (int i = 0; i < this.sucursales; i++) {
+            for (int j = 0; j < this.categorias; j++) {
+                double cantidad = rd.nextDouble() * 100;
+                int id;
+                do {                    
+                    id = rd.nextInt(this.sucursales * this.categorias);
+                } while (Arrays.asList(ids).contains(id));
+                
+                String descripcion = "Producto " + id;
+                double precio = rd.nextDouble() * 100000;
+                
+                this.productos[i][j] = new Producto(cantidad, descripcion, id, precio);
+                //System.out.println(this.productos[i][j]);
+            }
+        }
     }
     
     public String mejoresProductosPorCategoria() {
@@ -50,6 +76,15 @@ public class Productos {
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < this.sucursales; i++) {
+            System.out.println("Sucursal: " + i);
+            System.out.printf("%s\t%10s\t\t%10s\t%10s\t%15s\n", "ID", "Descripcion", "Precio", "Cantidad", "Valor");
+            
+            for (int j = 0; j < this.categorias; j++) {
+                System.out.print(this.productos[i][j]);
+            }
+        }
+        
+        return "\n";
     }
 }

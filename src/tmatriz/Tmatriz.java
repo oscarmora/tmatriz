@@ -20,7 +20,7 @@ public class Tmatriz {
         Scanner sc;
         sc = new Scanner(System.in);
         
-        Productos productos = null;
+        Productos productos = new Productos(10, 10);
         int opc = 0;
         boolean haCreadoProductos = false;
         
@@ -29,7 +29,7 @@ public class Tmatriz {
             
             switch(opc){
                 case 1:
-                    System.out.println("productos");
+                    productos.toString();
             }
             
         } while (opc != 0);
@@ -49,7 +49,7 @@ public class Tmatriz {
         System.out.println("6. Ordenar por ID ascendente");
         System.out.println("7. Ordenar por ventas descencente");
         System.out.println("0. Salir");
-        System.out.println("Digite su opción: ");
+        System.out.print("Digite su opción: ");
         
         return sc.nextInt(); 
     }

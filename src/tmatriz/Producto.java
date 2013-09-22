@@ -8,7 +8,7 @@ package tmatriz;
  *
  * @author salaf513
  */
-public abstract class Producto {
+public class Producto {
     
     private double cantidad;
     private String descripcion;
@@ -60,6 +60,11 @@ public abstract class Producto {
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+         System.out.print(this.id + "\t" 
+                 + this.descripcion + "\t\t"
+                 + String.format("%,10.2f", this.precio) + "\t"
+                 + String.format("%,10.2f", this.cantidad) + "\t"
+                 + String.format("%,15.2f", this.getValor()));
+        return "\n";
     }
 }
