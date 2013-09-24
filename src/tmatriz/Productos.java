@@ -65,8 +65,29 @@ public class Productos {
     }
     
     public String ventasPorCategoria() {
+        String result = "";
+        result += String.format("%s\t%10s\t%15s\n", "Categoria", "Cantidad", "Valor");
+        double tcantidad = 0;
+        double tvalor = 0;
+            
+        for (int i = 0; i < this.categorias; i++) {
+            double cantidad = 0;
+            double valor = 0;
+            
+            for (int j = 0; j < this.sucursales; j++) {
+                cantidad += this.productos[j][i].getCantidad();
+                valor += this.productos[j][i].getValor();
+            }
+            
+            tcantidad += cantidad;
+            tvalor += valor;
+            
+            result += String.format("Categoria " + i + "\t%,10.2f\t%,15.2f\n", cantidad, valor);
+        }
         
-        return "";
+        result += String.format("Total General\t%,10.2f\t%,15.2f\n", tcantidad, tvalor);
+        
+        return result;
     }
     
     public String ventasPorSucursal() {

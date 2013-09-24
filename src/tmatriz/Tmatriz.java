@@ -32,6 +32,8 @@ public class Tmatriz {
                     productos.toString();
                 case 2:
                     System.out.println(productos.ventasPorSucursal());
+                case 3:
+                    System.out.println(productos.ventasPorCategoria());
             }
             
         } while (opc != 0);
