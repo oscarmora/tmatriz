@@ -30,6 +30,8 @@ public class Tmatriz {
             switch(opc){
                 case 1:
                     productos.toString();
+                case 2:
+                    System.out.println(productos.ventasPorSucursal());
             }
             
         } while (opc != 0);

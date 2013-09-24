@@ -70,8 +70,29 @@ public class Productos {
     }
     
     public String ventasPorSucursal() {
+        String result = "";
+        result += String.format("%s\t%10s\t%15s\n", "Sucursal", "Cantidad", "Valor");
+        double tcantidad = 0;
+        double tvalor = 0;
+            
+        for (int i = 0; i < this.sucursales; i++) {
+            double cantidad = 0;
+            double valor = 0;
+            
+            for (int j = 0; j < this.categorias; j++) {
+                cantidad += this.productos[i][j].getCantidad();
+                valor += this.productos[i][j].getValor();
+            }
+            
+            tcantidad += cantidad;
+            tvalor += valor;
+            
+            result += String.format("Sucursal " + i + "\t%,10.2f\t%,15.2f\n", cantidad, valor);
+        }
         
-        return "";
+        result += String.format("Total General\t%,10.2f\t%,15.2f\n", tcantidad, tvalor);
+        
+        return result;
     }
 
     @Override
