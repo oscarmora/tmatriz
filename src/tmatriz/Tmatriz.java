@@ -18,7 +18,7 @@ public class Tmatriz {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner sc;
-        sc = new Scanner(System.in);
+        sc = new Scanner(System.in); 
         
         Productos productos = new Productos(10, 10);
         int opc = 0;
