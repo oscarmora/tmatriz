@@ -52,8 +52,30 @@ public class Productos {
     }
     
     public String mejoresProductosPorSucursal() {
+        String result = "";
+        result += String.format("%s\t%10s\t%10s\t%10s\t%10s\t%15s\n", "Sucursal", "ID", "Descripcion", "Precio", "Cantidad", "Valor");
+            
+        for (int i = 0; i < this.categorias; i++) {
+            double cantidad = 0;
+            double valor = 0;
+            int id = -1;
+            double precio = -1;
+            String descripcion = "";
+            
+            for (int j = 0; j < this.sucursales; j++) {
+                if (this.productos[i][j].getValor() > valor) {
+                    cantidad = this.productos[j][j].getCantidad();
+                    valor = this.productos[i][j].getValor();
+                    id = this.productos[i][j].getId();
+                    precio = this.productos[i][j].getPrecio();
+                    descripcion = this.productos[i][j].getDescripcion();
+                }
+            }
+            
+            result += String.format("Sucursal " + i + "\t%10d\t%10s\t%,10.2f\t%,10.2f\t%,15.2f\n", id, descripcion, precio, cantidad, valor);
+        }
         
-        return "";
+        return result;
     }
     
     public void ordenarxId() {
