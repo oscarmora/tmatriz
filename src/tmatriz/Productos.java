@@ -102,6 +102,17 @@ public class Productos {
     
     public void ordenarxId() {
        
+        for (int i = 0; i < sucursales; i++) {
+            for (int j = 0; j < categorias - 2; j++) {
+                System.out.println(this.productos[i][j].getId() + " > " + this.productos[i][j + 1].getId());
+                if (this.productos[i][j].getId() > this.productos[i][j + 1].getId()) {
+                    Producto proAux = this.productos[i][j];
+                    this.productos[i][j] = this.productos[i][j + 1];
+                    this.productos[i][j + 1] = proAux;
+                }
+                System.out.println(this.productos[i][j].getId() + " == " + this.productos[i][j + 1].getId());
+            }
+        }
     }
     
     public void ordenarxVentas() {

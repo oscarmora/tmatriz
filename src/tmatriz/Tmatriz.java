@@ -43,6 +43,10 @@ public class Tmatriz {
                 case 5:
                     System.out.println(productos.mejoresProductosPorCategoria());
                     break;
+                case 6:
+                    productos.ordenarxId();
+                    System.out.println(productos.toString());
+                    break;
             }
             
         } while (opc != 0);
