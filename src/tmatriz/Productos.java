@@ -47,8 +47,30 @@ public class Productos {
     }
     
     public String mejoresProductosPorCategoria() {
+        String result = "";
+        result += String.format("%s\t%10s\t%10s\t%10s\t%10s\t%15s\n", "Categoria", "ID", "Descripcion", "Precio", "Cantidad", "Valor");
+            
+        for (int i = 0; i < this.categorias; i++) {
+            double cantidad = 0;
+            double valor = 0;
+            int id = -1;
+            double precio = -1;
+            String descripcion = "";
+            
+            for (int j = 0; j < this.sucursales; j++) {
+                if (this.productos[j][i].getValor() > valor) {
+                    cantidad = this.productos[j][i].getCantidad();
+                    valor = this.productos[j][i].getValor();
+                    id = this.productos[j][i].getId();
+                    precio = this.productos[j][i].getPrecio();
+                    descripcion = this.productos[j][i].getDescripcion();
+                }
+            }
+            
+            result += String.format("Categoria " + i + "\t%10d\t%10s\t%,10.2f\t%,10.2f\t%,15.2f\n", id, descripcion, precio, cantidad, valor);
+        }
         
-        return "";
+        return result;
     }
     
     public String mejoresProductosPorSucursal() {
@@ -64,7 +86,7 @@ public class Productos {
             
             for (int j = 0; j < this.sucursales; j++) {
                 if (this.productos[i][j].getValor() > valor) {
-                    cantidad = this.productos[j][j].getCantidad();
+                    cantidad = this.productos[i][j].getCantidad();
                     valor = this.productos[i][j].getValor();
                     id = this.productos[i][j].getId();
                     precio = this.productos[i][j].getPrecio();
