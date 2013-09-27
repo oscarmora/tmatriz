@@ -25,7 +25,7 @@ public class Productos {
         this.fill();
     }
     
-    public void fill() {
+    private void fill() {
         Random rd = new Random();
         int ids[] = new int[this.sucursales * this.categorias];
         
@@ -35,6 +35,7 @@ public class Productos {
                 int id;
                 do {                    
                     id = rd.nextInt(this.sucursales * this.categorias);
+                    ids[id] = id;
                 } while (Arrays.asList(ids).contains(id));
                 
                 String descripcion = "Producto " + id;
@@ -102,8 +103,8 @@ public class Productos {
     
     public void ordenarxId() {
        
-        for (int i = 0; i < sucursales; i++) {
-            for (int j = 0; j < categorias - 2; j++) {
+        for (int i = 0; i < this.sucursales; i++) {
+            for (int j = 0; j < this.categorias - 2; j++) {
                 System.out.println(this.productos[i][j].getId() + " > " + this.productos[i][j + 1].getId());
                 if (this.productos[i][j].getId() > this.productos[i][j + 1].getId()) {
                     Producto proAux = this.productos[i][j];
