@@ -26,6 +26,7 @@ public class Tmatriz {
         
         do {            
             opc = menu();
+            System.out.println("\n");
             
             switch(opc){
                 case 1:
@@ -47,12 +48,16 @@ public class Tmatriz {
                     productos.ordenarxId();
                     System.out.println(productos.toString());
                     break;
+                case 7:
+                    productos.ordenarxVentas();
+                    System.out.println(productos.toString());
+                    break;
             }
             
         } while (opc != 0);
     }
     
-    public static int menu()
+    private static int menu()
     {
         Scanner sc;
         sc = new Scanner(System.in);

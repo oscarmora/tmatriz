@@ -4,7 +4,6 @@
  */
 package tmatriz;
 
-import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -27,16 +26,18 @@ public class Productos {
     
     private void fill() {
         Random rd = new Random();
-        int ids[] = new int[this.sucursales * this.categorias];
+        Object ids[] = new Object[this.sucursales * this.categorias];
         
         for (int i = 0; i < this.sucursales; i++) {
             for (int j = 0; j < this.categorias; j++) {
                 double cantidad = rd.nextDouble() * 100;
                 int id;
+                
                 do {                    
                     id = rd.nextInt(this.sucursales * this.categorias);
-                    ids[id] = id;
-                } while (Arrays.asList(ids).contains(id));
+                } while (ids[id] == id);
+                
+                ids[id] = id;
                 
                 String descripcion = "Producto " + id;
                 double precio = rd.nextDouble() * 100000;
@@ -102,22 +103,35 @@ public class Productos {
     }
     
     public void ordenarxId() {
-       
         for (int i = 0; i < this.sucursales; i++) {
-            for (int j = 0; j < this.categorias - 2; j++) {
-                System.out.println(this.productos[i][j].getId() + " > " + this.productos[i][j + 1].getId());
-                if (this.productos[i][j].getId() > this.productos[i][j + 1].getId()) {
-                    Producto proAux = this.productos[i][j];
-                    this.productos[i][j] = this.productos[i][j + 1];
-                    this.productos[i][j + 1] = proAux;
+            for (int j = 0; j < this.categorias; j++) {
+                for (int k = 0; k < this.categorias - 1; k++) {
+                    //System.out.println(this.productos[i][j].getId() + " > " + this.productos[i][j + 1].getId());
+                    if (this.productos[i][k].getId() > this.productos[i][k + 1].getId()) {
+                        Producto proAux = this.productos[i][k];
+                        this.productos[i][k] = this.productos[i][k + 1];
+                        this.productos[i][k + 1] = proAux;
+                    }
+                    //System.out.println(this.productos[i][j].getId() + " == " + this.productos[i][j + 1].getId());
                 }
-                System.out.println(this.productos[i][j].getId() + " == " + this.productos[i][j + 1].getId());
             }
         }
     }
     
     public void ordenarxVentas() {
-       
+       for (int i = 0; i < this.sucursales; i++) {
+            for (int j = 0; j < this.categorias; j++) {
+                for (int k = 0; k < this.categorias - 1; k++) {
+                    //System.out.println(this.productos[i][j].getId() + " > " + this.productos[i][j + 1].getId());
+                    if (this.productos[i][k].getValor() < this.productos[i][k + 1].getValor()) {
+                        Producto proAux = this.productos[i][k];
+                        this.productos[i][k] = this.productos[i][k + 1];
+                        this.productos[i][k + 1] = proAux;
+                    }
+                    //System.out.println(this.productos[i][j].getId() + " == " + this.productos[i][j + 1].getId());
+                }
+            }
+        }
     }
     
     public String ventasPorCategoria() {
@@ -141,7 +155,7 @@ public class Productos {
             result += String.format("Categoria " + i + "\t%,10.2f\t%,15.2f\n", cantidad, valor);
         }
         
-        result += String.format("Total General\t%,10.2f\t%,15.2f\n", tcantidad, tvalor);
+        result += String.format("TOTAL GENERAL\t%,10.2f\t%,15.2f\n", tcantidad, tvalor);
         
         return result;
     }
@@ -167,7 +181,7 @@ public class Productos {
             result += String.format("Sucursal " + i + "\t%,10.2f\t%,15.2f\n", cantidad, valor);
         }
         
-        result += String.format("Total General\t%,10.2f\t%,15.2f\n", tcantidad, tvalor);
+        result += String.format("TOTAL GENERAL\t%,10.2f\t%,15.2f\n", tcantidad, tvalor);
         
         return result;
     }
